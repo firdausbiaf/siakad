@@ -33,19 +33,21 @@
             <th>Jurusan</th>
             <th>Alamat</th>
             <th>Tanggal Lahir</th>
+            <th style="text-align: center">Foto</th>
 
             <th width="280px">Action</th>
         </tr>
-        @foreach ($mahasiswa as $mhs)
+        @foreach ($paginate as $mhs)
         <tr>
-            <td>{{ $mhs ->nim }}</td>
-            <td>{{ $mhs ->nama }}</td>
-            <td>{{ $mhs ->email }}</td>
-            <td>{{ $mhs ->kelas }}</td>
-            <td>{{ $mhs ->jurusan }}</td>
-            <td>{{ $mhs ->alamat }}</td>
-            <td>{{ $mhs ->tanggal_lahir }}</td>
-            <td>
+            <td>{{ $mhs->nim }}</td>
+            <td>{{ $mhs->nama }}</td>
+            <td>{{ $mhs->email }}</td>
+            <td>{{ $mhs->kelas->nama_kelas }}</td>
+            <td>{{ $mhs->jurusan }}</td>
+            <td>{{ $mhs->alamat }}</td>
+            <td>{{ $mhs->tanggal_lahir }}</td>
+            <td><img width="50px" src="{{asset('storage/'.$mhs->foto)}}"></td>
+        <td>
             <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
 
             <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->nim) }}">Show</a>
@@ -59,9 +61,7 @@
         @endforeach
     </table>
     <div>
-        {{
-            $mahasiswa->links();
-        }}
+        {{ $paginate->links(); }}
     </div>
     
     @endsection

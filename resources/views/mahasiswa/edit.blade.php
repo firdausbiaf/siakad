@@ -36,7 +36,11 @@
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label>
-                    <input type="Kelas" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria-describedby="Kelas" >
+                    <select name="kelas" class="form-control">
+                        @foreach($kelas as $kls)
+                            <option value="{{$kls->id}}" {{$Mahasiswa->kelas_id == $kls->id ? 'selected' : ''}}>{{$kls->nama_kelas}}</option>
+                        @endforeach
+                    </select>                    
                 </div>
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label>
@@ -50,9 +54,15 @@
                     <label for="Tanggal_Lahir">Tanggal Lahir</label>
                     <input type="Tanggal_Lahir" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" value="{{ $Mahasiswa->tanggal_lahir }}" aria-describedby="Tanggal_Lahir" >
                 </div>
+                </div>
+                <div class="form-group">
+                    <label for="Foto">Foto: </label> 
+                    <input type="file" class="form-control" required="required" name="Foto" value="{{ $Mahasiswa->Foto }}" aria-describedby="Foto"></br> 
+                    <img width="50px" src="{{asset('storage/'.$Mahasiswa->Foto)}}"> 
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                </div>
+                
             </div>
         </div>
     </div>

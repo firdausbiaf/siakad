@@ -35,7 +35,11 @@
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label>
-                    <input type="Kelas" name="Kelas" class="form-control" id="Kelas" ariadescribedby="Kelas" >
+                    <select class="form-control">
+                        @foreach($kelas as $kls)
+                            <option value="{{$kls->id}}">{{$kls->nama_kelas}}</option>
+                        @endforeach
+                    </select>
                 </div>                
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label>
@@ -51,6 +55,10 @@
                 </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto: </label> 
+                    <input type="file" class="form-control" required="required" name="foto"></br> 
                 </div>
             </div>
         </div>
